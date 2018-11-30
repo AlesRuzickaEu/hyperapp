@@ -1,21 +1,21 @@
 {
-  "name": "hyperapp",
+  "name": "superapp",
   "description": "1 kB JavaScript micro-framework for building declarative web applications.",
   "version": "1.2.9",
-  "main": "dist/hyperapp.js",
+  "main": "dist/superapp.js",
   "module": "src/index.js",
-  "typings": "hyperapp.d.ts",
+  "typings": "superapp.d.ts",
   "license": "MIT",
-  "repository": "jorgebucaran/hyperapp",
-  "homepage": "https://hyperapp.js.org",
+  "repository": "AlesRuzickaEu/superapp",
+  "homepage": "https://github.com/AlesRuzickaEu/superapp",
   "files": [
     "src",
     "dist",
-    "hyperapp.d.ts"
+    "superapp.d.ts"
   ],
-  "author": "Jorge Bucaran",
+  "author": "Jorge Bucaran, Ales Ruzicka",
   "keywords": [
-    "hyperapp",
+    "superapp",
     "frontend",
     "framework",
     "virtual dom",
@@ -24,8 +24,8 @@
   "scripts": {
     "test": "jest --coverage --no-cache && tsc -p test/ts",
     "build": "npm run bundle && npm run minify",
-    "bundle": "rollup -i src/index.js -o dist/hyperapp.js -m -f umd -n hyperapp",
-    "minify": "uglifyjs dist/hyperapp.js -o dist/hyperapp.js -mc pure_funcs=['Object.defineProperty'] --source-map includeSources,url=hyperapp.js.map",
+    "bundle": "rollup -i src/index.js -o dist/superapp.js -m -f umd -n superapp",
+    "minify": "uglifyjs dist/superapp.js -o dist/superapp.js -mc pure_funcs=['Object.defineProperty'] --source-map includeSources,url=superapp.js.map",
     "prepare": "npm run build",
     "format": "prettier --write {src,test}/**/*.js {,test/ts/}*.{ts,tsx}",
     "release": "npm run build && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"

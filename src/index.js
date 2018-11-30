@@ -1,4 +1,4 @@
-export function h(name, attributes) {
+function h(name, attributes) {
   var rest = []
   var children = []
   var length = arguments.length
@@ -26,7 +26,7 @@ export function h(name, attributes) {
       }
 }
 
-export function app(state, actions, view, container) {
+function app(state, actions, view, container) {
   var map = [].map
   var rootElement = (container && container.children[0]) || null
   var oldNode = rootElement && recycleElement(rootElement)
@@ -34,7 +34,7 @@ export function app(state, actions, view, container) {
   var skipRender
   var isRecycling = true
   var globalState = clone(state)
-  var wiredActions = wireStateToActions([], globalState, clone(actions))
+  var wiredActions = wireStateToActions(globalState, clone(actions))
 
   scheduleRender()
 
@@ -90,27 +90,7 @@ export function app(state, actions, view, container) {
     return out
   }
 
-  function setPartialState(path, value, source) {
-    var target = {}
-    if (path.length) {
-      target[path[0]] =
-        path.length > 1
-          ? setPartialState(path.slice(1), value, source[path[0]])
-          : value
-      return clone(source, target)
-    }
-    return value
-  }
-
-  function getPartialState(path, source) {
-    var i = 0
-    while (i < path.length) {
-      source = source[path[i++]]
-    }
-    return source
-  }
-
-  function wireStateToActions(path, state, actions) {
+  function wireStateToActions(state, actions) {
     for (var key in actions) {
       typeof actions[key] === "function"
         ? (function(key, action) {
@@ -118,31 +98,23 @@ export function app(state, actions, view, container) {
               var result = action(data)
 
               if (typeof result === "function") {
-                result = result(getPartialState(path, globalState), actions)
+                result = result(globalState, wiredActions, actions)
               }
 
               if (
                 result &&
-                result !== (state = getPartialState(path, globalState)) &&
+                result !== state &&
                 !result.then // !isPromise
               ) {
                 scheduleRender(
-                  (globalState = setPartialState(
-                    path,
-                    clone(state, result),
-                    globalState
-                  ))
+                  (globalState = clone(state, result))
                 )
               }
 
               return result
             }
           })(key, actions[key])
-        : wireStateToActions(
-            path.concat(key),
-            (state[key] = clone(state[key])),
-            (actions[key] = clone(actions[key]))
-          )
+        : wireStateToActions(state, (actions[key] = clone(actions[key])))
     }
 
     return actions

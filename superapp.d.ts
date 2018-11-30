@@ -57,7 +57,7 @@ export type ActionResult<State> = Partial<State> | Promise<any> | null | void
 export type ActionType<State, Actions> = (
   data?: any
 ) =>
-  | ((state: State, actions: Actions) => ActionResult<State>)
+  | ((state: State, actions: Actions, localActions: Actions) => ActionResult<State>)
   | ActionResult<State>
 
 /** The interface for the actions tree implementation.

@@ -1,24 +1,21 @@
-# Hyperapp
+# Superapp - Hyperapp fork without slices and forever V1
 
-[![Travis CI](https://img.shields.io/travis/jorgebucaran/hyperapp/master.svg)](https://travis-ci.org/jorgebucaran/hyperapp)
-[![Codecov](https://img.shields.io/codecov/c/github/jorgebucaran/hyperapp/master.svg)](https://codecov.io/gh/jorgebucaran/hyperapp)
-[![npm](https://img.shields.io/npm/v/hyperapp.svg)](https://www.npmjs.org/package/hyperapp)
-[![Slack](https://hyperappjs.herokuapp.com/badge.svg)](https://hyperappjs.herokuapp.com "Join us")
+# 🚨🚨🚨 This framework is not production ready, it's just a test 🚨🚨🚨
 
-Hyperapp is a JavaScript micro-framework for building web applications.
+This fork of Hyperapp has removed partial state and nested actions
 
-> :wave: [**Hyperapp 2.0**](https://github.com/jorgebucaran/hyperapp/pull/726) is coming out soon! Try it from the [V2](https://github.com/jorgebucaran/hyperapp/tree/V2) branch right now and be sure to follow [@HyperappJS](https://twitter.com/hyperappjs) for all the Hyperapp news & updates.
+Superapp is a JavaScript micro-framework for building web applications.
 
 - **Minimal** — We have aggressively minimized the concepts you need to understand to be productive while remaining on par with what other frameworks can do.
-- **Pragmatic** — Hyperapp holds firm on the functional programming front when managing your state, but takes a pragmatic approach to allow for side effects, asynchronous actions, and DOM manipulations.
-- **Standalone** — Do more with less. Hyperapp combines state management with a virtual DOM engine that supports keyed updates & lifecycle events — all with no dependencies.
+- **Pragmatic** — Superapp holds firm on the functional programming front when managing your state, but takes a pragmatic approach to allow for side effects, asynchronous actions, and DOM manipulations.
+- **Standalone** — Do more with less. Superapp combines state management with a virtual DOM engine that supports keyed updates & lifecycle events — all with no dependencies.
 
 ## Getting Started
 
 Our first example is a counter that can be incremented or decremented. Go ahead and [try it online](https://codepen.io/hyperapp/pen/zNxZLP/left/?editors=0010).
 
 ```jsx
-import { h, app } from "hyperapp"
+import { h, app } from "superapp"
 
 const state = {
   count: 0
@@ -40,7 +37,7 @@ const view = (state, actions) => (
 app(state, actions, view, document.body)
 ```
 
-Hyperapp consists of a two-function API. <samp>hyperapp.h</samp> returns a new [virtual DOM](#view) node tree and <samp>hyperapp.app</samp> [mounts](#mounting) a new application in the specified DOM element. Without an element, it's possible to use Hyperapp "headless", which can be useful when unit testing your program.
+Superapp consists of a two-function API. <samp>superapp.h</samp> returns a new [virtual DOM](#view) node tree and <samp>superapp.app</samp> [mounts](#mounting) a new application in the specified DOM element. Without an element, it's possible to use Superapp "headless", which can be useful when unit testing your program.
 
 This example assumes you are using a JavaScript compiler like [Babel](https://babeljs.io) or [TypeScript](https://www.typescriptlang.org) and a module bundler like [Parcel](https://parceljs.org), [Webpack](https://webpack.js.org), etc. If you are using JSX, all you need to do is install the JSX [transform plugin](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) and add the pragma option to your <samp>.babelrc</samp> file.
 
@@ -50,7 +47,7 @@ This example assumes you are using a JavaScript compiler like [Babel](https://ba
 }
 ```
 
-JSX is a language syntax extension that lets you write HTML tags interspersed with JavaScript. Because browsers don't understand JSX, we use a compiler to transform it into <samp>hyperapp.h</samp> function calls under the hood.
+JSX is a language syntax extension that lets you write HTML tags interspersed with JavaScript. Because browsers don't understand JSX, we use a compiler to transform it into <samp>superapp.h</samp> function calls under the hood.
 
 ```jsx
 const view = (state, actions) =>
@@ -61,33 +58,33 @@ const view = (state, actions) =>
   ])
 ```
 
-Note that JSX is not required for building applications with Hyperapp. You can use <samp>hyperapp.h</samp> directly and without a compilation step as shown above. Other alternatives to JSX include [@hyperapp/html](https://github.com/hyperapp/html), [hyperx](https://github.com/substack/hyperx), [t7](https://github.com/trueadm/t7) and [ijk](https://github.com/lukejacksonn/ijk).
+Note that JSX is not required for building applications with Superapp. You can use <samp>superapp.h</samp> directly and without a compilation step as shown above. Other alternatives to JSX include [@hyperapp/html](https://github.com/hyperapp/html), [hyperx](https://github.com/substack/hyperx), [t7](https://github.com/trueadm/t7) and [ijk](https://github.com/lukejacksonn/ijk).
 
 ## Installation
 
 Install with npm or Yarn.
 
 <pre>
-npm i <a href=https://www.npmjs.com/package/hyperapp>hyperapp</a>
+npm i <a href=https://www.npmjs.com/package/superapp>superapp</a>
 </pre>
 
 Then with a module bundler like [Rollup](https://rollupjs.org) or [Webpack](https://webpack.js.org), use as you would anything else.
 
 ```js
-import { h, app } from "hyperapp"
+import { h, app } from "superapp"
 ```
 
-If you don't want to set up a build environment, you can download Hyperapp from a CDN like [unpkg.com](https://unpkg.com/hyperapp) and it will be globally available through the <samp>window.hyperapp</samp> object. We support all ES5-compliant browsers, including Internet Explorer 10 and above.
+If you don't want to set up a build environment, you can download Superapp from a CDN like [unpkg.com](https://unpkg.com/superapp) and it will be globally available through the <samp>window.superapp</samp> object. We support all ES5-compliant browsers, including Internet Explorer 10 and above.
 
 ```html
-<script src="https://unpkg.com/hyperapp"></script>
+<script src="https://unpkg.com/superapp"></script>
 ```
 
 ## Overview
 
-Hyperapp applications consist of three interconnected parts: the [state](#state), [view](#view), and [actions](#actions).
+Superapp applications consist of three interconnected parts: the [state](#state), [view](#view), and [actions](#actions).
 
-Once initialized, your application executes in a continuous loop, taking in actions from users or from external events, updating the state, and representing changes in the view through a virtual DOM model. Think of an action as a signal that notifies Hyperapp to update the state and schedule the next view to redraw. After processing an action, the new state is presented back to the user.
+Once initialized, your application executes in a continuous loop, taking in actions from users or from external events, updating the state, and representing changes in the view through a virtual DOM model. Think of an action as a signal that notifies Superapp to update the state and schedule the next view to redraw. After processing an action, the new state is presented back to the user.
 
 ### State
 
@@ -112,11 +109,11 @@ const state = {
 }
 ```
 
-Because Hyperapp performs a shallow merge when updating your state, the top-level state must be a plain JavaScript object, other than this, you can use any type, including arrays, ES6 [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), [Sets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set), [Immutable.js](https://facebook.github.io/immutable-js/) structures, etc.
+Because Superapp performs a shallow merge when updating your state, the top-level state must be a plain JavaScript object, other than this, you can use any type, including arrays, ES6 [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), [Sets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set), [Immutable.js](https://facebook.github.io/immutable-js/) structures, etc.
 
 #### Local State
 
-Hyperapp does not have the concept of local state. Instead, components are pure functions that return a virtual DOM representation of the global state.
+Superapp does not have the concept of local state. Instead, components are pure functions that return a virtual DOM representation of the global state.
 
 ### Actions
 
@@ -210,10 +207,10 @@ const actions = {
 
 ### View
 
-Every time your application state changes, the view function is called so that you can specify how you want the DOM to look based on the new state. The view returns your specification in the form of a plain JavaScript object known as a virtual DOM and Hyperapp takes care of updating the actual DOM to match it.
+Every time your application state changes, the view function is called so that you can specify how you want the DOM to look based on the new state. The view returns your specification in the form of a plain JavaScript object known as a virtual DOM and Superapp takes care of updating the actual DOM to match it.
 
 ```js
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const view = (state, actions) =>
   h("div", {}, [
@@ -251,17 +248,17 @@ A virtual DOM is a description of what a DOM should look like using a tree of ne
 
 The virtual DOM model allows us to write code as if the entire document is thrown away and rebuilt on each change, while we only update what actually changed. We try to do this in the least number of steps possible, by comparing the new virtual DOM against the previous one. This leads to high efficiency, since typically only a small percentage of nodes need to change, and changing real DOM nodes is costly compared to recalculating the virtual DOM.
 
-It may seem wasteful to throw away the old virtual DOM and re-create it entirely on every update — not to mention the fact that at any one time, Hyperapp is keeping two virtual DOM trees in memory, but as it turns out, browsers can create hundreds of thousands of objects very quickly. On the other hand, modifying the DOM is several orders of magnitude more expensive.
+It may seem wasteful to throw away the old virtual DOM and re-create it entirely on every update — not to mention the fact that at any one time, Superapp is keeping two virtual DOM trees in memory, but as it turns out, browsers can create hundreds of thousands of objects very quickly. On the other hand, modifying the DOM is several orders of magnitude more expensive.
 
 ### Mounting
 
-To mount your application on a page, we need a DOM element. This element is referred to as the application container. Applications built with Hyperapp always have a single container.
+To mount your application on a page, we need a DOM element. This element is referred to as the application container. Applications built with Superapp always have a single container.
 
 ```jsx
 app(state, actions, view, container)
 ```
 
-Hyperapp will also attempt to reuse existing elements inside the container enabling SEO optimization and improving your sites time-to-interactive. The process consists of serving a fully rendered page together with your application. Then instead of throwing away the existing content, we'll turn your DOM nodes into an interactive application out of the box.
+Superapp will also attempt to reuse existing elements inside the container enabling SEO optimization and improving your sites time-to-interactive. The process consists of serving a fully rendered page together with your application. Then instead of throwing away the existing content, we'll turn your DOM nodes into an interactive application out of the box.
 
 This is how we can recycle server-rendered content out the counter example from before. See [Getting Started](#getting-started) for the application code.
 
@@ -290,7 +287,7 @@ A component is a pure function that returns a virtual node. Unlike the view func
 Here's a taste of how to use components in your application. The application is a typical To-Do manager. Go ahead and [try it online here](https://codepen.io/hyperapp/pen/zNxRLy).
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 const TodoItem = ({ id, value, done, toggle }) => (
   <li
@@ -318,7 +315,7 @@ export const view = (state, actions) => (
 )
 ```
 
-If you don't know all the attributes that you want to place in a component ahead of time, you can use the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator). Note that Hyperapp components can return an array of elements as in the following example. This technique lets you group a list of children without adding extra nodes to the DOM.
+If you don't know all the attributes that you want to place in a component ahead of time, you can use the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator). Note that Superapp components can return an array of elements as in the following example. This technique lets you group a list of children without adding extra nodes to the DOM.
 
 ```jsx
 const TodoList = ({ todos, toggle }) =>
@@ -330,7 +327,7 @@ const TodoList = ({ todos, toggle }) =>
 Components can only receive attributes and children from their parent component. Similarly to the top-level view function, lazy components are passed your application global state and actions. To create a lazy component, return a view function from a regular component.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const Up = ({ by }) => (state, actions) => (
   <button onclick={() => actions.up(by)}>+ {by}</button>
@@ -358,7 +355,7 @@ export const view = (state, actions) => (
 
 Suppose you have a list of questions with answers that are collapsed initially. A flag `answerIsOpen` is used to determine if a question's answer is open.
 
-Since there is no concept of local state in Hyperapp, the global state is always updated rather than an individual component's state.
+Since there is no concept of local state in Superapp, the global state is always updated rather than an individual component's state.
 
 To update a single question's state, the entire `questions` array will be mapped to a new array where the `answerIsOpen` property will be toggled if the question matches the one belonging to the component.
 
@@ -392,7 +389,7 @@ Each declaration consists of a style name property written in <samp>camelCase</s
 Individual style properties will be diffed and mapped against <samp>[HTMLElement.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)</samp> property members of the DOM element - you should therefore use the JavaScript style object [property names](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference), e.g. <samp>backgroundColor</samp> rather than <samp>background-color</samp>.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const Jumbotron = ({ text }) => (
   <div
@@ -419,7 +416,7 @@ Note that lifecycle events are attached to virtual DOM nodes, not to components.
 This event is fired after the element is created and attached to the DOM. Use it to manipulate the DOM node directly, make a network request, create a slide/fade in animation, etc.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const Textbox = ({ placeholder }) => (
   <input
@@ -435,7 +432,7 @@ export const Textbox = ({ placeholder }) => (
 This event is fired every time we update the element attributes. Use <samp>oldAttributes</samp> inside the event handler to check if any attributes changed or not.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const Textbox = ({ placeholder }) => (
   <input
@@ -455,7 +452,7 @@ export const Textbox = ({ placeholder }) => (
 This event is fired before the element is removed from the DOM. Use it to create slide/fade out animations. Call <samp>done</samp> inside the function to remove the element. This event is not called in its child elements.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const MessageWithFadeout = ({ title }) => (
   <div onremove={(element, done) => fadeout(element).then(done)}>
@@ -469,7 +466,7 @@ export const MessageWithFadeout = ({ title }) => (
 This event is fired after the element has been removed from the DOM, either directly or as a result of a parent being removed. Use it for invalidating timers, canceling a network request, removing global events listeners, etc.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const Camera = ({ onerror }) => (
   <video
@@ -490,7 +487,7 @@ export const Camera = ({ onerror }) => (
 Keys help identify nodes every time we update the DOM. By setting the <samp>key</samp> property on a virtual node, you declare that the node should correspond to a particular DOM element. This allows us to re-order the element into its new position, if the position changed, rather than risk destroying it.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const ImageGallery = ({ images }) =>
   images.map(({ hash, url, description }) => (
@@ -503,7 +500,7 @@ export const ImageGallery = ({ images }) =>
 Keys must be unique among sibling nodes. Don't use an array index as the key, if the index also specifies the order of siblings. If the position and number of items in a list are fixed, it will make no difference, but if the list is dynamic, the key will change every time the tree is rebuilt.
 
 ```jsx
-import { h } from "hyperapp"
+import { h } from "superapp"
 
 export const PlayerList = ({ players }) =>
   players
@@ -520,13 +517,6 @@ export const PlayerList = ({ players }) =>
 
 Keys are not registered on the top-level node of your view. If you are toggling the top-level view, and you must use keys, wrap them in an unchanging node.
 
-## Links
-
-- [Slack](https://hyperappjs.herokuapp.com)
-- [Twitter](https://twitter.com/hyperappJS)
-- [Examples](https://codepen.io/search/pens/?q=hyperapp)
-- [/r/hyperapp](https://www.reddit.com/r/hyperapp)
-
 ## License
 
-Hyperapp is MIT licensed. See [LICENSE](LICENSE.md).
+Superapp is MIT licensed. See [LICENSE](LICENSE.md).
